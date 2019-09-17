@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Tabela from './Tabela'
 
-class App extends Component (){
+class App extends Component {
 
   state = { 
     
-    autores : [
+    autores: [
       {
         nome: 'Paulo',
         livro: 'React',
@@ -31,12 +31,28 @@ class App extends Component (){
     ],
    };
 
+   removeAutor = () => {
+
+    const { autores } = this.state;
+      
+      this.setState(
+        {
+          autores: autores.filter(( autor, posAtual ) => {
+            
+            return posAtual;
+
+          }),
+        }
+      )
+
+   }
+
 
   //aqui estou passamdo o array de autores como estado para o component Tabela
   render() {
   return(
     <div className="App">
-      <Tabela autores = { this.state.autores }/>   
+      <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor }/>   
     </div>
   );
 }

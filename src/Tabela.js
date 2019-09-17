@@ -24,7 +24,7 @@ const TableBody = props => {
         <td>{ linha.nome }</td>
         <td>{ linha.livro }</td>
         <td>{ linha.preco }</td>
-        <td><button>Remover</button></td>
+        <td><button onClick = { () => { props.removeAutor() } }>Remover</button></td>
       </tr>
     );
 
@@ -38,18 +38,19 @@ const TableBody = props => {
 }
 
 class Tabela extends Component {
+
   render(){
 
     //aqui estou recebendo o array de autores que passei como props no App
 
-    const { autores } = this.props;
+    const { autores, removeAutor } = this.props;
     
     //agora estou passando abaixo o array de autores que estava disponível acima para o component TableBody
     
     return(
       <table>
         <TableHead />
-        <TableBody autores = { autores }/>
+        <TableBody autores = { autores } removeAutor = { removeAutor }/>
       </table>
     )
   }
