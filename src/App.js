@@ -1,7 +1,10 @@
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
-import Tabela from './Tabela'
+import Header from './Header';
+import Tabela from './Tabela';
+import Form from './Formulario';
 
 class App extends Component {
 
@@ -47,13 +50,23 @@ class App extends Component {
 
    }
 
+  // * aqui ele pega o que já existe com o spread operator e adiciona a unidade autor que receber
+  escutadorDeSubmit = autor => {
+    this.setState({
+      autores: [...this.state.autores, autor]
+    })
+  } 
 
   //aqui estou passamdo o array de autores como estado para o component Tabela
   render() {
   return(
-    <div className="App">
-      <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor }/>   
-    </div>
+    <Fragment>
+      <Header />
+      <div className="container mb-10">
+        <Tabela autores = { this.state.autores } removeAutor = { this.removeAutor }/> 
+        <Form escutadorDeSubmit={this.escutadorDeSubmit}/>
+      </div>  
+    </Fragment>
   );
 }
 }
